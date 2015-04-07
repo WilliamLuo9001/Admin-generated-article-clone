@@ -1,0 +1,32 @@
+<h1 style="text-align:center;">All articles</h1>
+
+
+
+<div class="ArticleBackgroundAll">
+	<div id="PerArticle">
+	<% @articles.order.each do |article| %>
+
+	<%= link_to (image_tag article.main_image.url(:medium)), article_path(article.id) %>
+
+	<br />
+	<%= link_to article.name, article_path(article.id) %></h1><br />
+
+	<%= article.description %></p><br />
+
+
+	<p>
+	<hr />
+
+		<%=link_to "#{article.comments.size} Comments", article_path(article.id) %> </p>
+
+	<hr />
+
+
+
+<% end %>
+
+</div>
+
+
+
+</div>

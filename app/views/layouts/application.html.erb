@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+   	<script type="text/javascript" src="<%= asset_path('jquery-1.9.1.min.js') %>"></script>
+    <script type="text/javascript" src="<%= asset_path('bootstrap.min.js') %>"></script>
+    <script type="text/javascript" src="<%= asset_path('ie10-viewport-bug-workaround.js') %>"></script>
+    <script type="text/javascript" src="<%= asset_path('jssor.slider.mini.js') %>"></script>
+</head>
+
+<body style="background-color:#222222;">
+
+	<header>
+		    <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0px;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="<%= asset_path('logo.png') %>"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                      	<div id="userInt">
+	    
+						<b><% if current_user %>
+
+						<li><%= "Welcome #{current_user.username}!" %></li>
+			 			<li><a><%=link_to('Edit Account', edit_user_path(current_user.id), method: :get) %></a></li>
+						<li><a><%= link_to( 'Sign out', logout_path, method: :get) %></a></li>
+
+						
+						<% else %>	
+						<div class="field">	
+						<%= form_tag('/signin', method: :post) do |f| %>
+						
+						<p><%= label_tag :email %><p>
+						<p><%= email_field_tag :email  %><p>
+						<p><%= label_tag :password %><p>
+						<p><%= password_field_tag :password %><p>
+						<p><%= submit_tag "Log in", :style => 'width: 60px' %><p>
+						<p><b><%= link_to " Sign up", new_user_path %></b><p>
+						<% end %>
+						<% end %>
+				    	
+	    					
+						 </form>  
+		                        </b>
+		                    </ul>
+		                </div>
+		                </div>
+		                </div>
+
+		            </div>
+		        </nav>
+		        		<% if current_admin %>
+	    				<p>
+</div>					<ul>
+						<%= link_to 'Add new article', new_article_path, method: :get, :class => 'admin '  %> |
+    						<%= link_to 'sign out admin', destroy_admin_session_path, method: :get  %></ul>
+	    					</p>
+			    		<% end %>
+   </header>
+  <div id="logos">
+  	<a href="https://twitter.com/SubtleEntropy" target="_blank"><img src="http://i60.tinypic.com/os6aex.jpg" style=" height: 50px;"></a>
+  	<a href="https://facebook.com/subtle3ntropy" target="_blank"><img src="http://i61.tinypic.com/2choors.jpg" style=" height: 50px;"></a>
+  	<a href="https://33.media.tumblr.com/cdfe0e96bb78e07e52404a5e9784ceee/tumblr_mlft24p09n1rax9obo10_500.gif" target="_blank"><img src="http://i62.tinypic.com/255mii8.jpg"  style=" height: 50px;"></a>
+    <p style="float:left; margin-right:10px; margin-left:15%;"><br><b>Follow me!</p></b>
+
+	</div>
+
+</body>
+	
+
+<%= yield %>
+ <div class="footer">
+   	<p1>COPYRIGHT © 2015 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+   	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+   	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+   	consequat.</p1>
+  </div>
+</body>
+</html>

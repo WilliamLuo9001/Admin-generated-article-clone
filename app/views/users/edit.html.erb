@@ -1,0 +1,32 @@
+<div id="Account-wrapper">
+	<div id="Account-body">
+		<h3>Make changes to your account information</h3>
+		<p>Your current Avatar image<br><span></span><br>
+		<%= image_tag @user.avatar.url, :class => 'avatar' %>
+
+		<%= form_for @user do |f| %>
+			<%= f.label :username %>:&nbsp;<br>
+			<%= f.text_field :username, :maxlength => 16, :style => 'width: 140px', :id => 'textBody' %>
+                <p id="counter"></p>
+			<%= f.label :email %>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+			<%= f.email_field :email, :style => 'width: 150px' %><br>
+
+			<%= f.label :password %>:&nbsp;&nbsp;<br>
+			<%=f.password_field :password, :style => 'width: 150px' %><br><br>
+			<%= f.label :'Avatar Image' %>
+            <%= f.file_field :avatar %><br>
+			<%=f.submit %></p>
+			<% end %>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+$('#textBody').keyup(function () {
+    var left = 16 - $(this).val().length;
+    if (left < 0) {
+        left = 0;
+    }
+    $('#counter').text(left + ' Characters left');
+});
+</script>

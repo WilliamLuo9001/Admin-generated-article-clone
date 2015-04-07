@@ -1,0 +1,17 @@
+<h1>Edit article</h1>
+
+
+<%= form_for @article, :html => {:multipart => true} do |f| %><b>
+	<%= f.label :name %>
+	<%= f.text_field :name %><br /><br>
+
+	<%= f.label :description %>
+	<%= f.text_area :description %> <br /><br>
+
+	<%= f.label :main_image %><br>
+	<%= f.file_field :main_image %><br><br>
+
+	<%=f.submit %></b>
+
+
+<% end %>

@@ -1,0 +1,33 @@
+
+<div class="postPageTop">
+
+		<h3><%= @article.name %></h3>
+
+		<section class="image-gallery group">
+			<figure tabindex="1">
+		<%= image_tag @article.main_image.url, :class => "img_large" %>
+			</figure>
+		</section>
+
+
+<p class="PageArticle"><%= @article.description %><br><p>
+</div>
+
+
+
+<div class="commentWrapper">
+	<h3>User Comments</h3>
+	<div class="comments">
+<% @article.comments.each do |comment| %>
+		
+		<p><%= image_tag comment.user.avatar.url,:class => 'avatar' %>Posted <%=time_ago_in_words (comment.created_at) %> ago  by <%= comment.user.username %><br><br>
+			</p>
+
+			<div class="commentBody">
+			<p2 style=""><%= comment.body %></p2>
+			</div>
+			<br />
+		<% end %>
+		</div>
+		<p style="text-align: center;"><%= link_to "Add a comment", new_article_comments_path(@article.id) %><p>
+		</div>

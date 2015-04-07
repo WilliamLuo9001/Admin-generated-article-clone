@@ -1,0 +1,42 @@
+<div class="commentWrapper">
+<h3 style="color:#505050 ">Comment on the article!</h3>
+
+
+<% if current_user %>
+ <%= form_for [@article, @comment] do |f| %>
+ 	<%= f.text_area :body, :size => "100x10", :maxlength => 600, :id => "textBody" %> <br />
+ 	<p id="counter"></p>
+ 	<input type="submit" name="commit" value="Add Comment">
+
+ 	<% end %>
+ 	<% else %>
+ 	<h3 style="color:white">You must be logged in to post comments! <br><%= link_to "Sign up!", new_user_path %></h3>
+ 	<% end %>
+
+
+<h3>User comments</h3></b>
+
+	<div class="comments">
+<% @article.comments.order(created_at: :desc).each do |comment| %>
+		<p> Posted <%=time_ago_in_words (comment.created_at) %> ago  by <%= comment.user.username %><br>
+		<%= comment.body %></p>
+		
+
+	<% end %>
+</div>	
+</div>
+<style>
+	.footer p1{
+		margin-top: 1000px;
+	}
+</style>
+
+<script type="text/javascript">
+$('#textBody').keyup(function () {
+    var left = 600 - $(this).val().length;
+    if (left < 0) {
+        left = 0;
+    }
+    $('#counter').text('Characters left: ' + left);
+});
+</script>

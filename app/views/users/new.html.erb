@@ -1,0 +1,69 @@
+<div class="loginWrapper">
+
+<div class="container">
+
+        <div id="slider1_container" style="display: none; margin: 0 auto; position: absolute; width: 600px;
+        height: 300px; overflow: hidden; margin-left:auto; margin-right:auto;">
+
+            <!-- Loading Screen -->
+            <div u="loading" style=" left: 0px;">
+                <div style="filter: alpha(opacity=70); opacity:0.7;
+
+                background-color: #000; left: 0px;width: 500px; 500px;">
+                </div>
+                <div style="background: url(../img/loading.gif) no-repeat center center;
+
+                left: 0px;width: 500px;height:500px;">
+                </div>
+            </div>
+ 
+            <div u="slides" style="cursor: default; width: 600px; height: 300px;
+            overflow: hidden;">
+            <% @articles.all.order(created_at: :desc).first(6).each do |article| %>
+            <div>
+            <%= image_tag article.main_image.url, :class => "img_large" %>
+       
+            </div>
+
+        <% end %>
+            </div>
+
+             <div class="loginInter"><p>
+
+				<%= form_for @user do |f| %>
+                <p style="font-size:8px;">(Usernames must be 16 characters and under)</p>
+				<%= f.label :username %>:&nbsp;
+				<%= f.text_field :username, :maxlength => 16, :style => 'width: 140px', :id => 'textBody' %>
+                <p id="counter"></p>
+				<%= f.label :email %>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%= f.email_field :email, :style => 'width: 140px; margin-left:-5px;' %>
+
+				<%= f.label :password %>:&nbsp;&nbsp;
+				<%=f.password_field :password, :style => 'width: 140px;' %>
+                <%= f.label :'Avatar Image' %>
+                <%= f.file_field :avatar %><br>
+				<%=f.submit %>
+                </p>
+				<% end %>
+			</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="push"></div>
+<style>
+    .footer {
+        margin-top: 50%;
+    }
+</style>
+
+<script type="text/javascript">
+$('#textBody').keyup(function () {
+    var left = 16 - $(this).val().length;
+    if (left < 0) {
+        left = 0;
+    }
+    $('#counter').text(left + ' Characters left');
+});
+</script>

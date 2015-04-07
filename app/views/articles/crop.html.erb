@@ -1,0 +1,9 @@
+
+<div class="crop-wrapper">
+	<p><b>Hold mouse to crop image for slideshow</b></p>
+	<%= form_for @article do |f| %>
+  		<%= f.cropbox :main_image, :width => 800 %>
+  		<%= f.crop_preview :main_image, :width => 400 %><br>
+  		<%= f.submit 'Publish Article!' %>
+	<% end %>
+</div>
